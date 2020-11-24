@@ -113,7 +113,7 @@ const CustomDrawerContentComponent = props => (
     <ScrollView>
         <SafeAreaView 
             style={styles.container}
-            forceInset={{top: 'always', horizontal: 'never'}}>
+            forceInset={{top: 'always', horizontal: 'never'}} >
             <View style={styles.drawerHeader}>
                 <View style={{flex: 1}}>
                     <Image source={require('./images/logo.png')} style={styles.drawerImage} />
@@ -155,7 +155,7 @@ const MainNavigator = createDrawerNavigator(
                 )
             }
         },
-   About: {
+        About: {
             screen: AboutNavigator,
             navigationOptions: {
                 drawerLabel: 'About Us',
@@ -209,7 +209,7 @@ class Main extends Component {
 }
 
 const styles = StyleSheet.create({
-   container: {
+    container: {
         flex: 1,
     },
     drawerHeader: {

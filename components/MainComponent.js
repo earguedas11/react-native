@@ -31,8 +31,6 @@ const DirectoryNavigator = createStackNavigator(
 const HomeNavigator = createStackNavigator(
   {
     Home: { screen: Home },
-    About: { screen: About },
-    Contact: { screen: Contact },
   },
   {
     defaultNavigationOptions: {
@@ -49,9 +47,7 @@ const HomeNavigator = createStackNavigator(
 
 const AboutNavigator = createStackNavigator(
   {
-    Home: { screen: Home },
-    Contact: { screen: Contact },
-    Directory: { screen: Directory },
+    About: { screen: About },
   },
   {
     defaultNavigationOptions: {
@@ -68,9 +64,7 @@ const AboutNavigator = createStackNavigator(
 
 const ContactNavigator = createStackNavigator(
   {
-    Home: { screen: Home },
-    About: { screen: About },
-    Directory: { screen: Directory },
+    Contact: { screen: Contact },
   },
   {
     defaultNavigationOptions: {

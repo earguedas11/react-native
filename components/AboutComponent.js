@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Text, FlatList } from 'react-native';
+import { ScrollView, Text, FlatList, View } from 'react-native';
 import { Card, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -35,7 +35,7 @@ class About extends Component {
   };
 
   render() {
-    const renderDirectoryItem = ({ item }) => {
+    const renderPartner = ({ item }) => {
       return (
         <ListItem
           title={item.name}

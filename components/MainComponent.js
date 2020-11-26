@@ -1,20 +1,20 @@
 import React, { Component } from "react";
 import Home from "./HomeComponent";
-import About from "./AboutComponent";
-import Contact from "./ContactComponent";
 import Directory from "./DirectoryComponent";
 import CampsiteInfo from "./CampsiteInfoComponent";
+import About from "./AboutComponent";
+import Contact from "./ContactComponent";
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
-// import { createStackNavigator } from "react-navigation-stack";
-import { createStackNavigator, createDrawerNavigator, DrawerItems } from 'react-navigation';
-// import { createAppContainer } from "react-navigation";
+import { createStackNavigator } from "react-navigation-stack";
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
+import { createAppContainer } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { fetchCampsites, fetchComments, fetchPromotions,
     fetchPartners } from '../redux/ActionCreators';
 
-    const mapDispatchToProps = {
+const mapDispatchToProps = {
     fetchCampsites,
     fetchComments,
     fetchPromotions,
@@ -26,52 +26,50 @@ const DirectoryNavigator = createStackNavigator(
     Directory: {
       screen: Directory,
       navigationOptions: ({ navigation }) => ({
-        headerLeft: (
-          <Icon
+        headerLeft: <Icon
             name="list"
             type="font-awesome"
             iconStyle={styles.stackIcon}
             onPress={() => navigation.toggleDrawer()}
           />
-        ),
-      }),
+      })
     },
-    CampsiteInfo: { screen: CampsiteInfo },
+    CampsiteInfo: { screen: CampsiteInfo }
   },
   {
     initialRouteName: "Directory",
     defaultNavigationOptions: {
       headerStyle: {
-        backgroundColor: "#5637DD",
+        backgroundColor: "#5637DD"
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
-        color: "#fff",
-      },
-    },
+        color: "#fff"
+      }
+    }
   }
 );
 
 const HomeNavigator = createStackNavigator(
   {
-    Home: { screen: Home },
+    Home: { screen: Home }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      headerStyle: {
-        backgroundColor: "#5637DD",
-      },
-      headerTintColor: "#fff",
-      headerTitleStyle: {
-        color: "#fff",
-      },
-      headerLeft: (
-        <Icon
-          name="home"
-          type="font-awesome"
-          iconStyle={styles.stackIcon}
-          onPress={() => navigation.toggleDrawer()}
-        />
+        headerStyle: {
+          backgroundColor: "#5637DD"
+        },
+        headerTintColor: "#fff",
+        headerTitleStyle: {
+          color: "#fff"
+        },
+        headerLeft: (
+          <Icon
+            name="home"
+            type="font-awesome"
+            iconStyle={styles.stackIcon}
+            onPress={() => navigation.toggleDrawer()}
+          />
       ),
     }),
   }
@@ -79,16 +77,16 @@ const HomeNavigator = createStackNavigator(
 
 const AboutNavigator = createStackNavigator(
   {
-    About: { screen: About },
+    About: { screen: About }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: "#5637DD",
+        backgroundColor: "#5637DD"
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
-        color: "#fff",
+        color: "#fff"
       },
       headerLeft: (
         <Icon
@@ -104,16 +102,16 @@ const AboutNavigator = createStackNavigator(
 
 const ContactNavigator = createStackNavigator(
   {
-    Contact: { screen: Contact },
+    Contact: { screen: Contact }
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
       headerStyle: {
-        backgroundColor: "#5637DD",
+        backgroundColor: "#5637DD"
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
-        color: "#fff",
+        color: "#fff"
       },
       headerLeft: (
         <Icon
@@ -131,8 +129,7 @@ const CustomDrawerContentComponent = (props) => (
   <ScrollView>
     <SafeAreaView
       style={styles.container}
-      forceInset={{ top: "always", horizontal: "never" }}
-    >
+      forceInset={{ top: "always", horizontal: "never" }}>
       <View style={styles.drawerHeader}>
         <View style={{ flex: 1 }}>
           <Image
@@ -156,16 +153,16 @@ const MainNavigator = createDrawerNavigator(
       navigationOptions: {
         drawerIcon: ({ tintColor }) => (
           <Icon name="home" type="font-awesome" size={24} color={tintColor} />
-        ),
-      },
+        )
+      }
     },
     Directory: {
       screen: DirectoryNavigator,
       navigationOptions: {
         drawerIcon: ({ tintColor }) => (
           <Icon name="list" type="font-awesome" size={24} color={tintColor} />
-        ),
-      },
+        )
+      }
     },
     About: {
       screen: AboutNavigator,
@@ -178,8 +175,8 @@ const MainNavigator = createDrawerNavigator(
             size={24}
             color={tintColor}
           />
-        ),
-      },
+        )
+      }
     },
     Contact: {
       screen: ContactNavigator,
@@ -192,17 +189,17 @@ const MainNavigator = createDrawerNavigator(
             size={24}
             color={tintColor}
           />
-        ),
-      },
-    },
+        )
+      }
+    }
   },
   {
     drawerBackgroundColor: "#CEC8FF",
-    contentComponents: CustomDrawerContentComponent,
+    contentComponents: CustomDrawerContentComponent
   }
 );
 
-// const AppNavigator = createAppContainer(MainNavigator);
+const AppNavigator = createAppContainer(MainNavigator);
 
 class Main extends Component {
     componentDidMount() {

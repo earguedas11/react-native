@@ -26,10 +26,43 @@ export const commentsFailed = errMess => ({
     payload: errMess
 });
 
+//Week 2 Task 3 - Comments
 export const addComments = comments => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
 });
+
+export const addComment = (comment) => ({ 
+  type: ActionTypes.ADD_COMMENT,
+  payload: comment
+});
+
+export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
+  const newComment = {
+    campsiteId: campsiteId,
+    rating: rating,
+    author: author,
+    text: text
+  };
+   newComment.date = new Date().toISOString();
+
+  return fetch(baseUrl + "comments", {
+    method: "POST",
+    body: JSON.stringify(newComment),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then(res, err)
+    .then((response) => response.json())
+    .then((response) => dispatch(addComment(response)))
+    .catch((error) => {
+      console.log("post comment", error.message);
+      alert("Your comment could not be posted\nError: " + error.message);
+    });
+}; 
+
+//end
 
 export const fetchCampsites = () => dispatch => {
 

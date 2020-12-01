@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import Home from "./HomeComponent";
-import Directory from "./DirectoryComponent";
-import CampsiteInfo from "./CampsiteInfoComponent";
-import About from "./AboutComponent";
-import Contact from "./ContactComponent";
+import React, { Component } from 'react';
+import Home from './HomeComponent';
+import Directory from './DirectoryComponent';
+import CampsiteInfo from './CampsiteInfoComponent';
+import About from './AboutComponent';
+import Contact from './ContactComponent';
+import Reservation from './ReservationComponent';
 import { View, Platform, StyleSheet, Text, ScrollView, Image } from 'react-native';
 import { createStackNavigator } from "react-navigation-stack";
 import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
@@ -13,7 +14,6 @@ import SafeAreaView from 'react-native-safe-area-view';
 import { connect } from 'react-redux';
 import { fetchCampsites, fetchComments, fetchPromotions,
     fetchPartners } from '../redux/ActionCreators';
-import Reservation from './ReservationComponent';
 
 const mapDispatchToProps = {
     fetchCampsites,
@@ -24,9 +24,9 @@ const mapDispatchToProps = {
 
 const DirectoryNavigator = createStackNavigator(
   {
-    Directory: {
-      screen: Directory,
-      navigationOptions: ({ navigation }) => ({
+    Directory: { screen: Directory, 
+      defaultnavigationOptions: ({ navigation }) => ({
+        
         headerLeft: <Icon
             name="list"
             type="font-awesome"
@@ -189,18 +189,18 @@ const MainNavigator = createDrawerNavigator(
       }
     },
     Reservation: {
-            screen: ReservationNavigator,
-            navigationOptions: {
-                drawerLabel: 'Reserve Campsite',
-                drawerIcon: ({tintColor}) => (
-                    <Icon
-                        name='tree'
-                        type='font-awesome'
-                        size={24}
-                        color={tintColor}
-                    />
-                )
-            }
+      screen: ReservationNavigator,
+      navigationOptions: {
+          drawerLabel: "Reserve Campsite",
+          drawerIcon: ({tintColor}) => (
+            <Icon
+              name="tree"
+              type="font-awesome"
+              size={24}
+              color={tintColor}
+            />
+        )
+      }
     },
     About: {
       screen: AboutNavigator,

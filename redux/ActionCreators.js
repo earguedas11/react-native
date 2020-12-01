@@ -181,7 +181,12 @@ export const postFavorite = campsiteId => dispatch => {
     }, 2000);
 };
 
-export const addFavorite = campsiteId => ({
+export const addFavorite = campsiteId => ({ //Non Thunk Action Creator
     type: ActionTypes.ADD_FAVORITE,
     payload: campsiteId
 });
+
+export const deleteFavorite = campsiteId => ({
+    type: ActionTypes.DELETE_FAVORITE,
+    payload: campsiteId
+}); 

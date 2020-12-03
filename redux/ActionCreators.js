@@ -26,43 +26,10 @@ export const commentsFailed = errMess => ({
     payload: errMess
 });
 
-//Week 2 Task 3 - Comments
 export const addComments = comments => ({
     type: ActionTypes.ADD_COMMENTS,
     payload: comments
 });
-
-export const addComment = (comment) => ({ 
-  type: ActionTypes.ADD_COMMENT,
-  payload: comment
-});
-
-export const postComment = (campsiteId, rating, author, text) => (dispatch) => {
-  const newComment = {
-    campsiteId: campsiteId,
-    rating: rating,
-    author: author,
-    text: text
-  };
-   newComment.date = new Date().toISOString();
-
-  return fetch(baseUrl + "comments", {
-    method: "POST",
-    body: JSON.stringify(newComment),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then(res, err)
-    .then((response) => response.json())
-    .then((response) => dispatch(addComment(response)))
-    .catch((error) => {
-      console.log("post comment", error.message);
-      alert("Your comment could not be posted\nError: " + error.message);
-    });
-}; 
-
-//end
 
 export const fetchCampsites = () => dispatch => {
 
@@ -181,12 +148,31 @@ export const postFavorite = campsiteId => dispatch => {
     }, 2000);
 };
 
-export const addFavorite = campsiteId => ({ //Non Thunk Action Creator
+export const addFavorite = campsiteId => ({
     type: ActionTypes.ADD_FAVORITE,
     payload: campsiteId
 });
 
+export const postComment = (campsiteId, rating, author, text) => dispatch => {
+    const newComment = {
+        campsiteId,
+        rating,
+        author, 
+        text,
+        date: new Date().toISOString()
+    };
+    setTimeout(() => {
+        dispatch(addComment(newComment));
+    }, 2000);
+};
+
+export const addComment = comment => ({
+    type: ActionTypes.ADD_COMMENT,
+    payload: comment
+}) 
+
+
 export const deleteFavorite = campsiteId => ({
     type: ActionTypes.DELETE_FAVORITE,
     payload: campsiteId
-}); 
+});

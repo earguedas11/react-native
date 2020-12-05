@@ -37,7 +37,23 @@ class Reservation extends Component {
   handleReservation() {
     console.log(JSON.stringify(this.state));
     // this.toggleModal();
-  }
+        Alert.alert(  //Week 3 - Task 2
+        'Begin Search?',
+        `Number of Campers: ${this.state.campers}\nHike-In? True\nDate: ${this.state.date.toLocaleString()}`,
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+            onPress: () => this.resetForm(),
+          },
+          {
+            text: 'OK',
+            onPress: () => this.resetForm(),
+          },
+        ],
+        { cancelable: false },
+      );
+  } 
 
   resetForm() {
     this.setState({
@@ -59,6 +75,8 @@ class Reservation extends Component {
             style={styles.formItem}
             selectedValue={this.state.campers}
             onValueChange={(itemValue) => this.setState({ campers: itemValue })}
+            mode='date'
+            
           >
             <Picker.Item label="1" value="1" />
             <Picker.Item label="2" value="2" />
@@ -101,13 +119,14 @@ class Reservation extends Component {
           />
         )}
         <View style={styles.formRow}>
-          <Button
+            <Button
             onPress={() => this.handleReservation()}
             title="Search"
             color="#5637DD"
             accessibilityLabel="Tap me to search for available campsites to reserve"
-          />
+            />
         </View>
+        
         {/* <Modal
           animationType={"slide"}
           transparent={false}
@@ -135,6 +154,7 @@ class Reservation extends Component {
             />
           </View>
         </Modal> */}
+
         </Animatable.View>
       </ScrollView>
     );
@@ -156,6 +176,7 @@ const styles = StyleSheet.create({
   formItem: {
     flex: 1,
   },
+
   // modal: {
   //   justifyContent: "center",
   //   margin: 20,
@@ -172,6 +193,7 @@ const styles = StyleSheet.create({
   //   fontSize: 18,
   //   margin: 10,
   // },
+  
 });
 
 export default Reservation;

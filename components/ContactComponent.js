@@ -35,7 +35,8 @@ class Contact extends Component {
                   name="envelope-o"
                   type="font-awesome"
                   color="#fff"
-                  iconStyle={{ marginRight: 10 }}/>
+                  iconStyle={{ marginRight: 10 }}
+                />
               }
               onPress={() => this.sendMail()}
             />
